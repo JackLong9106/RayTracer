@@ -26,5 +26,17 @@ namespace RayTracer
             CameraHeight = Math.Atan(Math.Cos(Math.PI * fov / 180));
             CameraWidth = CameraHeight * aspectRatio;
         }
+
+        public void Print()
+        {
+            Console.WriteLine($"Position: {Position}");
+            Console.WriteLine($"ViewUp: {ViewUp}");
+            Console.WriteLine($"ViewRight: {ViewRight}");
+            Console.WriteLine($"ViewNormal: {ViewNormal}");
+            Console.WriteLine($"Fov: {Fov}");
+            Console.WriteLine($"AspectRatio: {AspectRatio}");
+            Console.WriteLine($"CameraHeight: {CameraHeight}");
+            Console.WriteLine($"CameraWidth: {CameraWidth}");
+        }
     }
 }
