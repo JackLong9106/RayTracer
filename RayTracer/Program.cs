@@ -2,11 +2,13 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 
 public class Program
 {
     public static void Main(string[] args)
     {
+        Console.WriteLine("Starting...");
         ConfigReader config = new ConfigReader();
 
         Camera camera = new Camera(
@@ -18,5 +20,18 @@ public class Program
             );
 
         Renderer renderer = new Renderer(config.ImageHeight, config.ImageWidth, camera);
+
+        Stopwatch stopWatch = new Stopwatch();
+        stopWatch.Start();
+        renderer.Render();
+        stopWatch.Stop();
+
+        TimeSpan ts = stopWatch.Elapsed;
+
+        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+        Console.WriteLine("Finished...");
+        Console.WriteLine("RunTime " + elapsedTime);
     }
 }
