@@ -19,7 +19,9 @@ public class Program
             (double)config.ImageWidth / config.ImageHeight
             );
 
-        Renderer renderer = new Renderer(config, camera );
+        Sphere s = new Sphere(new Vector(0,0,0), 0.3, new Material(1,1, Color.Blue, false));
+
+        Renderer renderer = new Renderer(config, camera, s);
 
         Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();

@@ -12,7 +12,7 @@ namespace RayTracer
         public Vector Point { get; set; }
         public double Radius { get; set; }
 
-        public Sphere(Material material, Vector point, double radius)
+        public Sphere(Vector point, double radius, Material material)
         {
             Material = material;
             Point = point;

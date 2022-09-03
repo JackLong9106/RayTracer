@@ -30,6 +30,21 @@ namespace RayTracer
             CameraWidth = CameraHeight * aspectRatio;
         }
 
+        public Ray CreateRay(Vector point)
+        {
+            Vector directionRight = ViewRight.Multiply(point.X);
+            directionRight = directionRight.Multiply(CameraWidth);
+
+            Vector directionUp = ViewUp.Multiply(point.Y);
+            directionUp = directionUp.Multiply(CameraHeight);
+
+            Vector direction = ViewNormal.Add(directionRight);
+            direction = direction.Add(directionUp);
+            direction.Normalize();
+
+            return new Ray(Position, direction); ;
+        }
+
         public void Print()
         {
             Console.WriteLine($"Position: {Position}");

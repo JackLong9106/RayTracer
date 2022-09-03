@@ -20,6 +20,7 @@ namespace RayTracer
         public double Fov { get; set; }
 
         //Debug
+        public bool Debug { get; set; }
         public bool IsDebugCoreMode { get; set; }
 
         public ConfigReader()
@@ -47,6 +48,7 @@ namespace RayTracer
             if (setting == "Fov") Fov = double.Parse(contents);
             if (setting == "CoreRenderDebug") IsDebugCoreMode = StringToBool(contents);
             //Debug
+            if (setting == "Debug") Debug = StringToBool(contents);
             if (setting == "CoreRenderDebug") IsDebugCoreMode = StringToBool(contents);
             if (IsDebugCoreMode == true) Console.WriteLine("DEBUG MODE: Rendering core view");
         }
