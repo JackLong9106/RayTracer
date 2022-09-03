@@ -2,7 +2,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Numerics;
 
 public class Program
 {
@@ -11,9 +10,9 @@ public class Program
         ConfigReader config = new ConfigReader();
 
         Camera camera = new Camera(
-            new Vector3(1, 1, 0),
-            new Vector3(0, 0, 0),
-            new Vector3(0, 1, 0),
+            new Vector(1, 1, 0),
+            new Vector(0, 0, 0),
+            new Vector(0, 1, 0),
             20,
             (double)config.ImageWidth / config.ImageHeight
             );

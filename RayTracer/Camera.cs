@@ -1,27 +1,30 @@
-﻿using System.Numerics;
-
+﻿
 namespace RayTracer
 {
     public class Camera
     {
-        public Vector3 Position { get; set; }
-        public Vector3 ViewUp { get; set; }
-        public Vector3 ViewRight { get; set; }
-        public Vector3 ViewNormal { get; set; }
+        public Vector Position { get; set; }
+        public Vector ViewUp { get; set; }
+        public Vector ViewRight { get; set; }
+        public Vector ViewNormal { get; set; }
         public double Fov { get; set; }
         public double AspectRatio { get; set; }
         public double CameraHeight { get; set; }
         public double CameraWidth{ get; set; }
 
-        public Camera(Vector3 position, Vector3 lookAt, Vector3 viewUp, double fov, double aspectRatio)
+        public Camera(Vector position, Vector lookAt, Vector viewUp, double fov, double aspectRatio)
         {
             Position = position;
             AspectRatio = aspectRatio;
             Fov = fov;
 
-            ViewNormal = Vector3.Normalize(lookAt - position);
-            ViewRight = Vector3.Normalize(Vector3.Cross(ViewNormal, viewUp));
-            ViewUp = Vector3.Normalize(Vector3.Cross(ViewRight, ViewNormal));
+            ViewNormal = lookAt.Subtract(position);
+            viewUp.Normalize();
+
+            ViewRight = ViewNormal.Cross(viewUp);
+            ViewNormal.Normalize();
+
+            ViewUp = ViewRight.Cross(ViewNormal);
 
             CameraHeight = Math.Atan(Math.Cos(Math.PI * fov / 180));
             CameraWidth = CameraHeight * aspectRatio;

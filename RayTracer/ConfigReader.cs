@@ -11,9 +11,9 @@ namespace RayTracer
     {
         public int ImageHeight { get; set; }
         public int ImageWidth { get; set; }
-        public Vector3 Position { get; set; }
-        public Vector3 LookAt { get; set; }
-        public Vector3 DefaultViewUp { get; set; }
+        public Vector Position { get; set; }
+        public Vector LookAt { get; set; }
+        public Vector DefaultViewUp { get; set; }
         public double Fov { get; set; }
 
         public ConfigReader()
@@ -37,10 +37,10 @@ namespace RayTracer
             if (setting == "Fov") Fov = double.Parse(contents);
         }
 
-        private Vector3 StringToVector(string vectStr)
+        private Vector StringToVector(string vectStr)
         {
             string[] points = vectStr.Split(',');
-            Vector3 vector = new Vector3
+            Vector vector = new Vector
                 (
                     float.Parse(points[0]),
                     float.Parse(points[1]),
