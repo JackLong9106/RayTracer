@@ -48,7 +48,7 @@ namespace RayTracer
             if (setting == "CoreRenderDebug") IsDebugCoreMode = StringToBool(contents);
             //Debug
             if (setting == "CoreRenderDebug") IsDebugCoreMode = StringToBool(contents);
-            if (IsDebugCoreMode == true) Console.WriteLine("DEBUG: ");
+            if (IsDebugCoreMode == true) Console.WriteLine("DEBUG MODE: Rendering core view");
         }
 
         private Vector StringToVector(string vectStr)
