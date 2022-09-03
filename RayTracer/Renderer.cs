@@ -14,23 +14,24 @@ namespace RayTracer
         public int ImgWidth { get; set; }
         public Color[,] ImgBuffer { get; set; }
         public string FileName { get; set; }
-        
+        public ConfigReader Config { get; set; }
 
-        public Renderer(int height, int width, Camera camera)
+        public Renderer(ConfigReader config, Camera camera)
         {
+            Config = config;
             Camera = camera;
-            image = new Bitmap(height, width);
-            ImgHeight = height;
-            ImgWidth = width;
-            ImgBuffer = new Color[ImgHeight,ImgWidth];
+            image = new Bitmap(Config.ImageWidth, Config.ImageHeight);
+            ImgWidth = Config.ImageHeight;
+            ImgHeight = Config.ImageHeight;
+            ImgBuffer = new Color[ImgHeight, ImgWidth];
             FileName = "output2.bmp";
         }
 
         public void Render()
         {
             File.Delete(FileName);
-            //int processors = Environment.ProcessorCount;
-            int processors = 1;
+            int processors = Environment.ProcessorCount;
+            //int processors = 1;
             Task[] tasks = new Task[processors];
             for (int i = 0; i < processors; i++)
             {
@@ -54,8 +55,7 @@ namespace RayTracer
             {
                 for (int y = 0; y < ImgHeight; y++)
                 {
-                    FibonacciCoreTester(0, 1, 1, 1000);
-                    ImgBuffer[x, y] = color; 
+                    if (Config.IsDebugCoreMode) DebugCore(x, y, color);
                 }
             }
         }
@@ -79,6 +79,12 @@ namespace RayTracer
             return Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
         }
 
+        private void DebugCore(int x, int y, Color color)
+        {
+            FibonacciCoreTester(0, 1, 1, 1000);
+            ImgBuffer[x, y] = color;
+        }
+        
         private static void FibonacciCoreTester(double a, double b, double counter, double len)
         {
             if (counter <= len)

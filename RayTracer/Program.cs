@@ -19,7 +19,7 @@ public class Program
             (double)config.ImageWidth / config.ImageHeight
             );
 
-        Renderer renderer = new Renderer(config.ImageHeight, config.ImageWidth, camera);
+        Renderer renderer = new Renderer(config, camera );
 
         Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
